@@ -32,7 +32,7 @@ class Element extends HTMLElement {
 
 	set data(val) {
 		// todo: clear
-    this.#$("menuContainer").appendChild(MarkUpCode.getMenuHtmlElements(val, this.onClick))
+    this.#$("menuContainer").appendChild(MarkUpCode.getMenuHtmlElements(val, this.onClick.bind(this)))
 	}
 
 	set callback(val) {
@@ -49,14 +49,13 @@ class Element extends HTMLElement {
 		}
 	}
 
-  onClick(el) {
-    console.log(el)
-    //this.#invokeCallback()
+  onClick(id) {
+    this.#invokeCallback(id)
   }
 
-  #invokeCallback() {
+  #invokeCallback(id) {
 		if(this.#_callback !== undefined) {
-			this.#_callback()
+			this.#_callback(id)
 		} else {
 			console.debug("menu: No callback")
 		}

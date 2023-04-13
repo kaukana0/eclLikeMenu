@@ -34,7 +34,6 @@ export default class MarkUpCode {
   */
   static getMenuHtmlElements(data, callback) {
 		const ul = document.createElement('ul')
-    console.log(data)
     for (let [name, items] of data) {
       const li = document.createElement('li')
       const a = document.createElement('a')
