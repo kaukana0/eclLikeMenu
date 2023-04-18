@@ -3,18 +3,16 @@ import MarkUpCode from  "./markUpCode.mjs"		// keep this file html/css free
 
 class Element extends HTMLElement {
 
-  #_callback
+  #_onSelect					// callback
+	#_onInited					// callback
   #_isInitialized
 
-	#$(elementId) {
-		return this.shadowRoot.getElementById(elementId)
-	}
+	//#$(elementId) {
+	//	return this.shadowRoot.getElementById(elementId)
+	//}
 
 	constructor() {
 		super()
-		this.attachShadow({ mode: 'open' })
-		const tmp = MarkUpCode.getHtmlTemplate(MarkUpCode.mainElement()).cloneNode(true)
-		this.shadowRoot.appendChild(tmp)
 	}
 
 	#registerEvents() {
@@ -32,33 +30,65 @@ class Element extends HTMLElement {
 
 	set data(val) {
 		// todo: clear
-    this.#$("menuContainer").appendChild(MarkUpCode.getMenuHtmlElements(val, this.onClick.bind(this)))
+    //this.#$("menuContainer").appendChild(MarkUpCode.getMenuHtmlElements(val, this.onClick.bind(this)))
+
+		const tmp = MarkUpCode.getHtmlTemplate(MarkUpCode.getMenuHtml(val)).cloneNode(true)
+		// unfortunately, ECL menu doesn't work inside shadow DOM (at least not out of the box)
+		//this.attachShadow({ mode: 'open' })
+		//this.shadowRoot.appendChild(tmp)
+		this.appendChild(tmp)
+
+		this.#_addScripts(this.#_onInited)
 	}
 
-	set callback(val) {
-		this.#_callback = val
+	set onSelect(val) {
+		this.#_onSelect = val
+	}
+
+	set onInited(val) {
+		this.#_onInited = val
 	}
 
   static get observedAttributes() {
-		return ['data', "callback"]
+		return ['data', "onSelect", "onInited"]
 	}
 
 	attributeChangedCallback(name, oldVal, newVal) {
-		if (name === 'data' || name === 'callback') {
-			console.warn("menu: setting "+name+" via html attribute is being ignored. please use js property instead.")
-		}
+		//if (name === 'data' || name === 'callback') {
+		//	console.warn("menu: setting "+name+" via html attribute is being ignored. please use js property instead.")
+		//}
 	}
 
-  onClick(id) {
-    this.#invokeCallback(id)
-  }
-
-  #invokeCallback(id) {
-		if(this.#_callback !== undefined) {
-			this.#_callback(id)
+  #_invokeCallback(id) {
+		if(this.#_onSelect !== undefined) {
+			this.#_onSelect(id)
 		} else {
 			console.debug("menu: No callback")
 		}
+	}
+
+	#_addEventHandlers() {
+		var elements = this.querySelectorAll("[mid]")		//TODO: attention! "All" searches whole document!
+		for (var i = 0; i < elements.length; i++) {
+			elements[i].addEventListener("click", (e)=>this.#_invokeCallback(e.target.getAttribute("mid")))
+		}	
+	}
+
+	#_addScripts() {
+		var script = document.createElement('script')
+		script.src="./redist/ecl/moment.min.js"
+		this.appendChild(script)
+
+		var script2 = document.createElement('script')
+		script2.src="./redist/ecl/ecl-eu.js"
+		const onLoaded = () => {
+			this.#_addEventHandlers()
+			if(this.#_onInited !== undefined) {
+				this.#_onInited()
+			}
+		}
+		script2.onload = onLoaded.bind(this)
+		this.appendChild(script2)
 	}
 
 }
