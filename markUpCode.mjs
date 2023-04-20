@@ -4,13 +4,6 @@ all HTML and CSS as JS string
 
 export default class MarkUpCode {
 
-  // note: scripts are not executed through appendChild
-
-	static css(ms, zIndex) {
-		return `<style>
-		</style>`
-	}
-
 	// helper
 	static getHtmlTemplate(source) {
 		const t = document.createElement('template')
@@ -21,7 +14,7 @@ export default class MarkUpCode {
   static getMenuHtml(data) {
     let retVal = this.getIntro()
 
-    const btn = `              <button class="ecl-button ecl-button--primary ecl-menu__button-caret" type="button" data-ecl-menu-caret aria-label="Access&#x20;item&#x27;s&#x20;children">
+    const btn = `<button class="ecl-button ecl-button--primary ecl-menu__button-caret" type="button" data-ecl-menu-caret aria-label="Access&#x20;item&#x27;s&#x20;children">
         <span class="ecl-button__container">
           <svg class="ecl-icon ecl-icon--xs ecl-icon--rotate-180 ecl-button__icon ecl-button__icon--after" focusable="false" aria-hidden="true" data-ecl-icon>
               <use xlink:href="./redist/ecl/icons.svg#corner-arrow"></use>
@@ -53,8 +46,6 @@ export default class MarkUpCode {
 
   static getIntro() {
     let retVal = `
-    <link rel="stylesheet" href="./redist/ecl/ecl-eu.css" />
-
     <nav class="ecl-menu ecl-menu--group1" data-ecl-menu data-ecl-auto-init="Menu" aria-expanded="false">
   <div class="ecl-menu__overlay" data-ecl-menu-overlay></div>
   
