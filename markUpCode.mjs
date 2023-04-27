@@ -24,8 +24,9 @@ export default class MarkUpCode {
     `
 
     for (let [name, items] of data) {
-      retVal += `<li class="ecl-menu__item ecl-menu__item--current ecl-menu__item--has-children" data-ecl-menu-item data-ecl-has-children aria-haspopup aria-expanded="false">
-      <a mid="${name}" class="ecl-menu__link ecl-menu__link--current" data-ecl-menu-link>${name}</a>`
+      retVal += `<li class="ecl-menu__item ecl-menu__item--has-children" data-ecl-menu-item data-ecl-has-children aria-haspopup aria-expanded="false">
+      <a mid="${name}" class="ecl-menu__link" data-ecl-menu-link>${name}</a>`
+      // TODO ecl-menu__item--current  ecl-menu__link--current
       if(items.length>0) {
         retVal += btn
         retVal += this.getSubMenuItems(items)

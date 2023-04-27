@@ -24,7 +24,7 @@ class Element extends HTMLElement {
 	attributeChangedCallback(name, oldVal, newVal) {}
 
 	#_addEventHandlers() {
-		var elements = this.querySelectorAll("[mid]")		//TODO: attention! "All" searches whole document!
+		var elements = this.querySelectorAll("[mid]")
 		for (var i = 0; i < elements.length; i++) {
 			elements[i].addEventListener("click", (e)=>this.#_invokeCallback(e.target.getAttribute("mid")))
 		}	
