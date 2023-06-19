@@ -24,7 +24,7 @@ class Element extends HTMLElement {
 	attributeChangedCallback(name, oldVal, newVal) {}
 
 	#_addEventHandlers() {
-		var elements = this.querySelectorAll("[mid]")
+		var elements = this.querySelectorAll("[mid]")	// menu item id
 		for (var i = 0; i < elements.length; i++) {
 			elements[i].addEventListener("click", (e)=>this.#_invokeCallback(e.target.getAttribute("mid")))
 		}	
