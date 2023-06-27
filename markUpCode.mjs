@@ -25,23 +25,22 @@ export default class MarkUpCode {
 
     // mid = menu item id
     for (let [name, items] of data) {
-      retVal += `<li class="ecl-menu__item ecl-menu__item--has-children" data-ecl-menu-item data-ecl-has-children aria-haspopup aria-expanded="false">
-      <a mid="${name}" class="ecl-menu__link" data-ecl-menu-link>${name}</a>`
-      // TODO ecl-menu__item--current  ecl-menu__link--current
+      retVal += `<li class="ecl-menu__item ecl-menu__item--has-children" data-ecl-menu-item data-ecl-has-children mid="${name}" pmid="${name}" aria-haspopup aria-expanded="false">
+      <a  class="ecl-menu__link" data-ecl-menu-link>${name}</a>`
       if(items.length>0) {
         retVal += btn
-        retVal += this.getSubMenuItems(items)
+        retVal += this.getSubMenuItems(name, items)
       }
     }
 
     return retVal+this.getOutro()
   }
 
-  static getSubMenuItems(items) {
+  static getSubMenuItems(parentMenuItem, items) {
     let retVal = `<div class="ecl-menu__mega" data-ecl-menu-mega>
     <ul class="ecl-menu__sublist">`
     items.forEach((name) => {
-      retVal += `<li class="ecl-menu__subitem" data-ecl-menu-subitem><a mid="${name}" class="ecl-menu__sublink">${name}</a></li>`
+      retVal += `<li class="ecl-menu__subitem" data-ecl-menu-subitem mid="${name}" pmid="${parentMenuItem}"><a class="ecl-menu__sublink">${name}</a></li>`
     })
     return retVal+= `</ul></div>`
   }
