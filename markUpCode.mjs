@@ -25,8 +25,12 @@ export default class MarkUpCode {
 
     // mid = menu item id
     for (let [name, items] of data) {
-      retVal += `<li class="ecl-menu__item ecl-menu__item--has-children" data-ecl-menu-item data-ecl-has-children mid="${name}" pmid="${name}" aria-haspopup aria-expanded="false">
-      <a  class="ecl-menu__link" data-ecl-menu-link>${name}</a>`
+      const bla1 = items.length>0?"ecl-menu__item--has-children":""
+      const bla2 = items.length>0?"data-ecl-has-children":""
+      retVal += `<li class="ecl-menu__item ${bla1}" ${bla2} 
+        data-ecl-menu-item mid="${name}" pmid="${name}" aria-haspopup aria-expanded="false">
+        <a class="ecl-menu__link" data-ecl-menu-link>${name}</a>`
+
       if(items.length>0) {
         retVal += btn
         retVal += this.getSubMenuItems(name, items)
@@ -89,6 +93,17 @@ export default class MarkUpCode {
     </section>
   </div>
 </nav>`
+  }
+
+  static css() {
+    return `
+<style>
+  .ecl-menu__mega {
+    height: 500px !important;
+    width: 100px;
+  }
+</style>
+    `    
   }
 
 }

@@ -10,6 +10,7 @@ class Element extends HTMLElement {
 	disconnectedCallback() {}
 
 	set data(val) {
+		//document.head.insertAdjacentHTML("beforeend", MarkUpCode.css())
 		const tmp = MarkUpCode.getHtmlTemplate(MarkUpCode.getMenuHtml(val)).cloneNode(true)
 		// unfortunately, ECL menu doesn't work inside shadow DOM (at least not out of the box)
 		//this.attachShadow({ mode: 'open' })
