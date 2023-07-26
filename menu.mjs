@@ -6,7 +6,7 @@ class Element extends HTMLElement {
   #_onSelect					// callback
 
 	constructor() {	super()	}
-	connectedCallback() { setTimeout(()=> this.#_addEventHandlers(), 100) }
+	connectedCallback() { setTimeout(()=> this.#_addEventHandlers(), 500) }
 	disconnectedCallback() {}
 
 	set data(val) {
