@@ -33,15 +33,15 @@ class Element extends HTMLElement {
 				// so do that manually here
 
 				this.#deselectAll()
-				const [mid,pmid] = this.#selectByElement(e)
-				this.#invokeCallback(mid,pmid)
+				const [mid,pmid,isParentMenuItem] = this.#selectByElement(e)
+				this.#invokeCallback(mid,pmid,isParentMenuItem)
 			})
 		}	
 	}
 
-  #invokeCallback(id, pid) {
+  #invokeCallback(id, pid, isParentMenuItem) {
 		if(this.#_onSelect !== undefined) {
-			this.#_onSelect(id, pid)
+			this.#_onSelect(id, pid, isParentMenuItem)
 		} else {
 			console.debug("menu: No callback")
 		}
@@ -83,7 +83,7 @@ class Element extends HTMLElement {
 			mainMenuItem.style.color = "black"
 			mainMenuItem.classList.add("currentlySelected")
 		}
-		return [li.getAttribute("mid"), li.getAttribute("pmid")]
+		return [li.getAttribute("mid"), li.getAttribute("pmid"), li.hasAttribute("data-ecl-menu-item")]
 	}
 
 }
