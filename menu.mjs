@@ -35,6 +35,7 @@ class Element extends HTMLElement {
 				this.#deselectAll()
 				const [mid,pmid,isParentMenuItem] = this.#selectByElement(e)
 				this.#invokeCallback(mid,pmid,isParentMenuItem)
+				e.stopPropagation()
 			})
 		}	
 	}
