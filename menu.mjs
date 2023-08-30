@@ -33,7 +33,7 @@ class Element extends HTMLElement {
 				// so do that manually here
 
 				this.#deselectAll()
-				const [mid,pmid,isParentMenuItem] = this.#selectByElement(e)
+				const [mid,pmid,isParentMenuItem] = this.#selectByElement( this.#getElement(e) )
 				this.#invokeCallback(mid,pmid,isParentMenuItem)
 				e.stopPropagation()
 			})
@@ -51,39 +51,47 @@ class Element extends HTMLElement {
 	#deselectAll() {
 		const curr = this.querySelectorAll("li")		// [currentlySelected]
 		for (let i = 0; i < curr.length; i++) {
-			if(curr[i].classList.contains("ecl-menu__item")) {
+			if(curr[i].classList.contains("ecl-menu__item")) {	// main item
 				curr[i].style.background = "#00000000"
-				curr[i].style.color = "white"
-				//curr[i].firstElementChild.style.background = "#00000000"
-				//curr[i].firstElementChild.style.color = "white"
-			} else {
-				curr[i].firstElementChild.style.background = "white"
-				curr[i].firstElementChild.style.color = "#0e47cb"
-
+				curr[i].firstElementChild.style.color = ""
+				const arrow = curr[i].querySelectorAll("svg")[0]
+				if(arrow) {
+					//arrow.setAttribute("stroke","")
+					arrow.setAttribute('style', '')
+				}
+			} else {		// sub item
+				curr[i].firstElementChild.style.background = ""
+				curr[i].firstElementChild.style.color = ""
 			}
 		}
 	}
 
 	select(id) {
-
+		this.#deselectAll()
+		let el = this.firstElementChild.querySelector(`li[mid="${id}"]`)
+		if(!el) {el = this.firstElementChild.querySelector(`li[pmid="${id}"]`)}
+		this.#selectByElement( el ) 
 	}
 
-	#selectByElement(e) {
-		const li = e.target.closest("li")
+	#getElement(event) {return event.target.closest("li")}
 
-		if(li.hasAttribute("data-ecl-menu-subitem")) {
-			li.style.background = "#cfdaf5"
-			li.style.color = "black"
-			li.firstElementChild.style.background = "#cfdaf5"
-			li.firstElementChild.style.color = "black"
+	#selectByElement(li) {
+		if(li.hasAttribute("data-ecl-menu-subitem")) {	// selected sub item
+			li.firstElementChild.style.background = "#e7edfa"
+			li.firstElementChild.style.color = "#0e47cb"
 			li.firstElementChild.classList.add("currentlySelected")
 		}
-		if(li.hasAttribute("data-ecl-menu-item")) {
+		//if(li.hasAttribute("data-ecl-menu-item")) {		// selected main item
 			const mainMenuItem = li.closest(".ecl-menu__item")		// go up until this class is matched
-			//mainMenuItem.style.background = "white"
-			mainMenuItem.style.color = "black"
-			mainMenuItem.classList.add("currentlySelected")
-		}
+			mainMenuItem.style.background = "white"
+			mainMenuItem.firstElementChild.style.color = "#0e47cb"
+			mainMenuItem.firstElementChild.classList.add("currentlySelected")
+			const arrow = mainMenuItem.querySelectorAll("svg")[0]
+			if(arrow) {
+				//arrow.setAttribute("stroke","black")
+				arrow.setAttribute('style', 'fill: black')
+			}
+		//}
 		return [li.getAttribute("mid"), li.getAttribute("pmid"), li.hasAttribute("data-ecl-menu-item")]
 	}
 
