@@ -25,9 +25,9 @@ class Element extends HTMLElement {
 	attributeChangedCallback(name, oldVal, newVal) {}
 
 	#_addEventHandlers() {
-		var elements = this.querySelectorAll("[mid]")	// menu item id
-		for (var i = 0; i < elements.length; i++) {
-			elements[i].addEventListener("click", (e) => {
+		var items = this.querySelectorAll("[mid]")	// menu item id
+		for (var i = 0; i < items.length; i++) {
+			items[i].addEventListener("click", (e) => {
 
 				// ecl-menu__item--current  AND ecl-menu__link--current don't do anything after init was called :-(
 				// so do that manually here
