@@ -4,6 +4,7 @@ import MarkUpCode from  "./markUpCode.mjs"		// keep this file html/css free
 class Element extends HTMLElement {
 
   #_onSelect					// callback
+	#_isLocked = false
 
 	constructor() {	super()	}
 	connectedCallback() { setTimeout(()=> this.#_addEventHandlers(), 500) }
@@ -31,7 +32,7 @@ class Element extends HTMLElement {
 
 				// ecl-menu__item--current  AND ecl-menu__link--current don't do anything after init was called :-(
 				// so do that manually here
-
+				if(this.#_isLocked) {return}
 				this.#deselectAll()
 				const [mid,pmid,isParentMenuItem] = this.#selectByElement( this.#getElement(e) )
 				this.#invokeCallback(mid,pmid,isParentMenuItem)
@@ -67,6 +68,7 @@ class Element extends HTMLElement {
 	}
 
 	select(id) {
+		if(this.#_isLocked) {return}
 		this.#deselectAll()
 		let el = this.firstElementChild.querySelector(`li[mid="${id}"]`)
 		if(!el) {el = this.firstElementChild.querySelector(`li[pmid="${id}"]`)}
@@ -93,6 +95,10 @@ class Element extends HTMLElement {
 			}
 		//}
 		return [li.getAttribute("mid"), li.getAttribute("pmid"), li.hasAttribute("data-ecl-menu-item")]
+	}
+
+	setLocked(isLocked) {
+		this.#_isLocked = isLocked
 	}
 
 }
