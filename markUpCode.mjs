@@ -29,7 +29,7 @@ export default class MarkUpCode {
       const bla2 = items.length>0?"data-ecl-has-children":""
       retVal += `<li class="ecl-menu__item ${bla1}" ${bla2} 
         data-ecl-menu-item mid="${name}" pmid="${name}" aria-haspopup aria-expanded="false">
-        <a class="ecl-menu__link" data-ecl-menu-link>${name}</a>`
+        <a class="ecl-menu__link" data-ecl-menu-link style="cursor: pointer;">${name}</a>`
 
       if(items.length>0) {
         retVal += btn
@@ -44,7 +44,7 @@ export default class MarkUpCode {
     let retVal = `<div class="ecl-menu__mega" data-ecl-menu-mega>
     <ul class="ecl-menu__sublist" style="column-count: 1!important;">`
     items.forEach((name) => {
-      retVal += `<li class="ecl-menu__subitem" data-ecl-menu-subitem mid="${name}" pmid="${parentMenuItem}"><a class="ecl-menu__sublink">${name}</a></li>`
+      retVal += `<li class="ecl-menu__subitem" data-ecl-menu-subitem mid="${name}" pmid="${parentMenuItem}"><a class="ecl-menu__sublink" style="cursor: pointer;">${name}</a></li>`
     })
     return retVal+= `</ul></div>`
   }
