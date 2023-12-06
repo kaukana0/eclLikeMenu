@@ -12,11 +12,13 @@ class Element extends HTMLElement {
 
 	set data(val) {
 		//document.head.insertAdjacentHTML("beforeend", MarkUpCode.css())
-		const tmp = MarkUpCode.getHtmlTemplate(MarkUpCode.getMenuHtml(val)).cloneNode(true)
+		const html = MarkUpCode.getHtmlTemplate(MarkUpCode.getMenuHtml(val)).cloneNode(true)
 		// unfortunately, ECL menu doesn't work inside shadow DOM (at least not out of the box)
 		//this.attachShadow({ mode: 'open' })
 		//this.shadowRoot.appendChild(tmp)
-		this.appendChild(tmp)
+		this.appendChild(html)
+		const css = MarkUpCode.getHtmlTemplate(MarkUpCode.css()).cloneNode(true)
+		this.appendChild(css)
 		new ECL.Menu( this.firstElementChild ).init()	
 	}
 

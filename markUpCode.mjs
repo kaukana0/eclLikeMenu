@@ -51,10 +51,11 @@ export default class MarkUpCode {
 
   static getIntro() {
     let retVal = `
-    <nav class="ecl-menu ecl-menu--group1" data-ecl-menu data-ecl-auto-init="Menu" aria-expanded="false">
+    <nav id="mainmenu" class="ecl-menu ecl-menu--group1" data-ecl-menu data-ecl-auto-init="Menu" aria-expanded="false">
     <div class="ecl-menu__overlay" data-ecl-menu-overlay></div>
-    <div class="ecl-container ecl-menu__container" style="margin-left:20px;">
-      <a class="ecl-link ecl-link--standalone ecl-menu__open" href="/component-library/example#tkl6e" data-ecl-menu-open>
+
+    <div class="ecl-container ecl-menu__container overrideWidth someMargin">
+      <a class="ecl-link ecl-link--standalone ecl-menu__open" data-ecl-menu-open>
         <svg class="ecl-icon ecl-icon--s" focusable="false" aria-hidden="true">
           <use xlink:href="./redist/ecl/icons.svg#hamburger"></use>
         </svg>
@@ -98,10 +99,44 @@ export default class MarkUpCode {
   static css() {
     return `
 <style>
+/*
   .ecl-menu__mega {
     height: 500px !important;
     width: 100px;
   }
+*/
+  @media (min-width: 480px) {
+      .overrideWidth {
+          width: unset !important;
+      }
+  }
+
+  @media (min-width: 768px) {
+      .overrideWidth {
+          width: unset !important;
+      }
+  }
+
+  @media (min-width: 996px) {
+      .overrideWidth {
+          width: unset !important;
+      }
+      .someMargin {
+        margin-left:20px;
+      }
+  }
+
+  @media (min-width: 1140px) {
+      .overrideWidth {
+          width: unset !important;
+      }
+  }
+
+  .someMargin {
+    margin-left:0px;
+  }
+
+
 </style>
     `    
   }
