@@ -103,6 +103,10 @@ class Element extends HTMLElement {
 		this.#_isLocked = isLocked
 	}
 
+	close() {
+		// TODO
+	}
+
 }
 
 window.customElements.define('ecl-like-menu', Element)

@@ -44,7 +44,7 @@ export default class MarkUpCode {
     let retVal = `<div class="ecl-menu__mega" data-ecl-menu-mega>
     <ul class="ecl-menu__sublist" style="column-count: 1!important;">`
     items.forEach((name) => {
-      retVal += `<li class="ecl-menu__subitem" data-ecl-menu-subitem mid="${name}" pmid="${parentMenuItem}"><a class="ecl-menu__sublink" style="cursor: pointer;">${name}</a></li>`
+      retVal += `<li class="ecl-menu__subitem" data-ecl-menu-close data-ecl-menu-subitem mid="${name}" pmid="${parentMenuItem}"><a class="ecl-menu__sublink" style="cursor: pointer;">${name}</a></li>`
     })
     return retVal+= `</ul></div>`
   }
