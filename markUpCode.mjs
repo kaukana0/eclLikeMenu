@@ -54,7 +54,7 @@ export default class MarkUpCode {
     <nav id="mainmenu" class="ecl-menu ecl-menu--group1" data-ecl-menu data-ecl-auto-init="Menu" aria-expanded="false">
     <div class="ecl-menu__overlay" data-ecl-menu-overlay></div>
 
-    <div class="ecl-container ecl-menu__container overrideWidth someMargin">
+    <div class="ecl-container ecl-menu__container overrideWidth someMargin someMargin2">
       <a class="ecl-link ecl-link--standalone ecl-menu__open" data-ecl-menu-open>
         <svg class="ecl-icon ecl-icon--s" focusable="false" aria-hidden="true">
           <use xlink:href="./redist/ecl/icons.svg#hamburger"></use>
@@ -117,13 +117,20 @@ export default class MarkUpCode {
       }
   }
 
+  .someMargin {
+    margin-left: calc(35px - 16px);
+  }
+
   @media (min-width: 996px) {
       .overrideWidth {
           width: unset !important;
       }
-      .someMargin {
-        margin-left:20px;
-      }
+  }
+
+  @media (max-width: 996px) {
+    .someMargin2 {
+      width:60px;
+    }
   }
 
   @media (min-width: 1140px) {
@@ -131,11 +138,6 @@ export default class MarkUpCode {
           width: unset !important;
       }
   }
-
-  .someMargin {
-    margin-left:0px;
-  }
-
 
 </style>
     `    
