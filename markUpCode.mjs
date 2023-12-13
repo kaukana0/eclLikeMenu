@@ -131,6 +131,9 @@ export default class MarkUpCode {
     .someMargin2 {
       width:60px;
     }
+    #mainmenu {
+      box-shadow:unset !important;
+    }
   }
 
   @media (min-width: 1140px) {
