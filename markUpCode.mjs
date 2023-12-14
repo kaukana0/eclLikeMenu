@@ -62,7 +62,7 @@ export default class MarkUpCode {
       </a>
       <section class="ecl-menu__inner" data-ecl-menu-inner>
         <header class="ecl-menu__inner-header">
-          <button class="ecl-menu__close ecl-button ecl-button--text" type="submit" data-ecl-menu-close>
+          <button id="closebtn" class="ecl-menu__close ecl-button ecl-button--text" type="submit" data-ecl-menu-close>
             <span class="ecl-menu__close-container ecl-button__container">
               <svg class="ecl-icon ecl-icon--s ecl-button__icon ecl-button__icon--before" focusable="false"
                 aria-hidden="true" data-ecl-icon>
