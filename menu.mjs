@@ -31,7 +31,9 @@ class Element extends HTMLElement {
 		var items = this.querySelectorAll("[mid]")	// menu item id
 		for (var i = 0; i < items.length; i++) {
 			items[i].addEventListener("click", (e) => {
-
+				if(e.target.nodeName==="BUTTON" || e.target.nodeName==="svg") {
+					return
+				}
 				// ecl-menu__item--current  AND ecl-menu__link--current don't do anything after init was called :-(
 				// so do that manually here
 				if(this.#_isLocked) {return}
@@ -104,7 +106,7 @@ class Element extends HTMLElement {
 	}
 
 	close() {
-		// TODO
+		this.querySelector("#closebtn").click()		
 	}
 
 }
