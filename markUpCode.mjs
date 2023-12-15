@@ -56,7 +56,7 @@ export default class MarkUpCode {
 
     <div class="ecl-container ecl-menu__container overrideWidth someMargin someMargin2">
       <a class="ecl-link ecl-link--standalone ecl-menu__open" data-ecl-menu-open>
-        <svg class="ecl-icon" focusable="false" aria-hidden="true" style="width:40px; height:40px;">
+        <svg class="ecl-icon" focusable="false" aria-hidden="true" style="width:23px; height:23px;">
           <use xlink:href="./redist/ecl/icons.svg#hamburger"></use>
         </svg>
       </a>
@@ -117,16 +117,20 @@ export default class MarkUpCode {
   }
 
   .someMargin {
-    margin-left: calc(35px - 16px);
+    /* margin-left: calc(35px - 16px); */
   }
 
-  @media (min-width: 996px) {
+  @media (max-width: 996px) {
       .overrideWidth {
           width: unset !important;
       }
   }
 
   @media (max-width: 996px) {
+    .someMargin {
+      margin-left: 0;
+      padding:4px;
+    }
     .someMargin2 {
       width:60px;
     }
