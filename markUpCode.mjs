@@ -130,6 +130,7 @@ export default class MarkUpCode {
     .someMargin {
       margin-left: 0;
       padding:4px;
+      margin-right:9px;
     }
     .someMargin2 {
       width:60px;
