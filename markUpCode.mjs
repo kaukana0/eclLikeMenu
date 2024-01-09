@@ -55,7 +55,7 @@ export default class MarkUpCode {
     <div class="ecl-menu__overlay" data-ecl-menu-overlay></div>
 
     <div class="ecl-container ecl-menu__container overrideWidth someMargin someMargin2">
-      <a class="ecl-link ecl-link--standalone ecl-menu__open" data-ecl-menu-open>
+      <a class="ecl-link ecl-link--standalone ecl-menu__open" data-ecl-menu-open tabindex="0">
         <svg class="ecl-icon" focusable="false" aria-hidden="true" style="width:23px; height:23px;">
           <use xlink:href="./redist/ecl/icons.svg#hamburger"></use>
         </svg>
