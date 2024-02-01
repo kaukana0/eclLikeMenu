@@ -86,14 +86,14 @@ class Element extends HTMLElement {
 
 	#selectByElement(li) {
 		if(li.hasAttribute("data-ecl-menu-subitem")) {	// selected sub item
-			li.firstElementChild.style.background = "#e7edfa"
-			li.firstElementChild.style.color = "#0e47cb"
+			li.firstElementChild.style.background = "#cfdaf5"
+			li.firstElementChild.style.color = "#082b7a"
 			li.firstElementChild.classList.add("currentlySelected")
 		}
 		//if(li.hasAttribute("data-ecl-menu-item")) {		// selected main item
 			const mainMenuItem = li.closest(".ecl-menu__item")		// go up until this class is matched
-			mainMenuItem.style.background = "white"
-			mainMenuItem.firstElementChild.style.color = "#0e47cb"
+			mainMenuItem.style.background = "#cfdaf5"
+			mainMenuItem.firstElementChild.style.color = "#082b7a"
 			mainMenuItem.firstElementChild.classList.add("currentlySelected")
 			const arrow = mainMenuItem.querySelectorAll("svg")[0]
 			if(arrow) {
